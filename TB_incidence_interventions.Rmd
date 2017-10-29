@@ -1,0 +1,41 @@
+---
+title: "Tuberculosis Incidence and Interventions in England and Wales, 1913-2016"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    shiny: true
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+```{r global, include = FALSE}
+devtools::install_github("seabbs/tbinenglanddataclean")
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
