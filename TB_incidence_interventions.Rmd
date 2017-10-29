@@ -35,7 +35,7 @@ df_interventions <- tbinenglanddataclean::tb_interventions_timeline %>%
            Detail = detail)
 ```
 
-### Tuberculosis notifications in England and Wales from 2013 to 2016, stratified initially by respiratory/non-respiratory status and from 1982 by pulmonary/non-pulmonary Tuberculosis. Interventions are highlighted with vertical lines, more information on each intervention is available in the following table. The data is sourced from Public Health England, see [here](https://www.samabbott.co.uk/tbinenglanddataclean/reference/tb_not_ew.html) for details.
+### Tuberculosis notifications in England and Wales from 2013 to 2016, stratified initially by respiratory/non-respiratory status and from 1982 by pulmonary/non-pulmonary Tuberculosis. Interventions are highlighted with vertical lines, more information on each intervention is available in the following table. The data is sourced from Public Health England, see [here](https://www.gov.uk/government/publications/tuberculosis-tb-annual-notifications-1913-onwards) for details.
 
 ```{r}
 renderPlotly({
