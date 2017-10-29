@@ -23,7 +23,7 @@ library(tidyverse)
 ```
     
 ```{r global, include = FALSE}
-devtools::install_github("seabbs/tbinenglanddataclean")
+#devtools::install_github("seabbs/tbinenglanddataclean")
 library(tbinenglanddataclean)
 
 ## Set up interventions table
