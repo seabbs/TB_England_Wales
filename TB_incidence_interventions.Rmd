@@ -5,6 +5,7 @@ output:
     orientation: columns
     vertical_layout: fill
     storyboard: true
+    runtime: shiny
     theme: cosmo
     social: menu
     source: "https://github.com/seabbs/TB_England_Wales"
@@ -34,39 +35,39 @@ df_interventions <- tbinenglanddataclean::tb_interventions_timeline %>%
            Detail = detail)
 ```
 
-### TB notifications in England and Wales from 2013 to 2016, stratified initially by respiratory/non-respiratory status and from 1982 by pulmonary/non-pulmonary TB. Interventions are highlighted with vertical lines, more information on each intervention is available in the following table. The data is sourced from Public Health England, see [here](https://www.samabbott.co.uk/tbinenglanddataclean/reference/tb_not_ew.html) for details.
+### Tuberculosis notifications in England and Wales from 2013 to 2016, stratified initially by respiratory/non-respiratory status and from 1982 by pulmonary/non-pulmonary Tuberculosis. Interventions are highlighted with vertical lines, more information on each intervention is available in the following table. The data is sourced from Public Health England, see [here](https://www.samabbott.co.uk/tbinenglanddataclean/reference/tb_not_ew.html) for details.
 
 ```{r}
-#renderPlotly({
-  plot <- tbinenglanddataclean::plot_historic_tb_ew(zoom_date_start = NULL) +
-  labs(caption = "Source: Public Health England")
-
+renderPlotly({
+  plot <- tbinenglanddataclean::plot_historic_tb_ew(zoom_date_start = NULL) 
   plot <- plotly_build(plot)
   plot$elementId <- NULL
+
   plot
-#})
+})
 ```
 
 ### Interventions against Tuberculosis, aggregated from multiple sources but based in part on this [wikipedia timeline](https://en.wikipedia.org/wiki/Timeline_of_tuberculosis).
 
 ```{r}
-#DT::renderDataTable({
-  DT::datatable(df_interventions, options = list(
-  bPaginate = FALSE
+DT::renderDataTable({
+  df_interventions}, options = list(
+  pageLength = 20,
+  scrollY = "600px", scrollX = TRUE,
+  fillContainer = TRUE,
+  filter = "top"
 )
-
 )
-#})
 ```
 
-### Proportion of Tuberculosis by type, from 1913 until 1981 the plot shows the proportion of respiratory vs. non-respiratory cases and from 1982 it shows the proportion of pulmonary vs. non-pulmonary TB.
+### Proportion of Tuberculosis by type. From 1913 until 1981 the plot shows the proportion of respiratory vs. non-respiratory cases. From 1982 it shows the proportion of pulmonary vs. non-pulmonary Tuberculosis.
 
 ```{r}
-#renderPlotly({
+renderPlotly({
   plot <- tbinenglanddataclean::plot_historic_prop_pul_tb() +
   labs(caption = "Source: Public Health England")
   plot <- plotly_build(plot)
   plot$elementId <- NULL
   plot
-#})
+})
 ```
