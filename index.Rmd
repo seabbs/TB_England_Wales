@@ -20,12 +20,12 @@ library(shiny)
 library(plotly)
 library(DT)
 library(tidyverse)
+library(tbinenglanddataclean)
+
 ```
     
 ```{r global, include = FALSE}
 #devtools::install_github("seabbs/tbinenglanddataclean")
-library(tbinenglanddataclean)
-
 ## Set up interventions table
 df_interventions <- tbinenglanddataclean::tb_interventions_timeline %>% 
     rename(Year = year, 
