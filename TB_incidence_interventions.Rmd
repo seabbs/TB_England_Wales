@@ -1,41 +1,72 @@
 ---
-title: "Tuberculosis Incidence and Interventions in England and Wales, 1913-2016"
+title: "Tuberculosis Incidence: England and Wales, 1913-2016"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
-    shiny: true
+    storyboard: true
+    theme: cosmo
+    social: menu
+    source: "https://github.com/seabbs/TB_England_Wales"
+    navbar:
+      - { title: "By Sam Abbott", href: "https://samabbott.co.uk", align: right }
+    css: style.css
 ---
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(shiny)
+library(plotly)
+library(DT)
+library(tidyverse)
 ```
-
+    
 ```{r global, include = FALSE}
 devtools::install_github("seabbs/tbinenglanddataclean")
+library(tbinenglanddataclean)
+
+## Set up interventions table
+df_interventions <- tbinenglanddataclean::tb_interventions_timeline %>% 
+    rename(Year = year, 
+           Intervention = intervention,
+           Type = type,
+           Line = line,
+           Detail = detail)
 ```
 
-Column {data-width=650}
------------------------------------------------------------------------
-
-### Chart A
+### TB notifications in England and Wales from 2013 to 2016, stratified initially by respiratory/non-respiratory status and from 1982 by pulmonary/non-pulmonary TB. Interventions are highlighted with vertical lines, more information on each intervention is available in the following table. The data is sourced from Public Health England, see [here](https://www.samabbott.co.uk/tbinenglanddataclean/reference/tb_not_ew.html) for details.
 
 ```{r}
+#renderPlotly({
+  plot <- tbinenglanddataclean::plot_historic_tb_ew(zoom_date_start = NULL) +
+  labs(caption = "Source: Public Health England")
 
+  plot <- plotly_build(plot)
+  plot$elementId <- NULL
+  plot
+#})
 ```
 
-Column {data-width=350}
------------------------------------------------------------------------
-
-### Chart B
+### Interventions against Tuberculosis, aggregated from multiple sources but based in part on this [wikipedia timeline](https://en.wikipedia.org/wiki/Timeline_of_tuberculosis).
 
 ```{r}
+#DT::renderDataTable({
+  DT::datatable(df_interventions, options = list(
+  bPaginate = FALSE
+)
 
+)
+#})
 ```
 
-### Chart C
+### Proportion of Tuberculosis by type, from 1913 until 1981 the plot shows the proportion of respiratory vs. non-respiratory cases and from 1982 it shows the proportion of pulmonary vs. non-pulmonary TB.
 
 ```{r}
-
+#renderPlotly({
+  plot <- tbinenglanddataclean::plot_historic_prop_pul_tb() +
+  labs(caption = "Source: Public Health England")
+  plot <- plotly_build(plot)
+  plot$elementId <- NULL
+  plot
+#})
 ```
-
