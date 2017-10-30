@@ -2,7 +2,7 @@
 Tuberculosis in England and Wales
 =================================
 
-Exploring public data on Tuberculosis in England and Wales using interactive dashboards. The dashboards rely on [tbinenglanddataclean](www.samabbott.co.uk/tbinenglanddataclean), which is an R package that contains cleaning scripts for private TB data and machine readable versions of public TB data for England (and Wales), along with graphing functions.
+Exploring public data on Tuberculosis in England and Wales using interactive dashboards. The dashboards rely on [tbinenglanddataclean](https://www.samabbott.co.uk/tbinenglanddataclean), which is an R package that contains cleaning scripts for private TB data and machine readable versions of public TB data for England (and Wales), along with graphing functions.
 
 Currently one dashboard has been implemented exploring TB incidence and interventions over time, discover more [here](https://www.samabbott.co.uk/post/tb-england-wales/).
 
