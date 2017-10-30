@@ -21,6 +21,10 @@ library(plotly)
 library(DT)
 library(tidyverse)
 library(tbinenglanddataclean)
+
+system("rm Rplots.pdf")
+if (names(dev.cur()) != "null device") dev.off()
+pdf(NULL)
 ```
     
 ```{r global, include = FALSE}
@@ -66,6 +70,7 @@ renderPlotly({
   labs(caption = "Source: Public Health England")
   plot <- plotly_build(plot)
   plot$elementId <- NULL
+  
   plot
 })
 ```
