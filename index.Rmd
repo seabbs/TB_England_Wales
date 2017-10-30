@@ -5,13 +5,13 @@ output:
     orientation: columns
     vertical_layout: fill
     storyboard: true
-    runtime: shiny
     theme: cosmo
     social: menu
     source: "https://github.com/seabbs/TB_England_Wales"
     navbar:
       - { title: "By Sam Abbott", href: "https://samabbott.co.uk", align: right }
     css: style.css
+runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
@@ -21,10 +21,6 @@ library(plotly)
 library(DT)
 library(tidyverse)
 library(tbinenglanddataclean)
-
-system("rm Rplots.pdf")
-if (names(dev.cur()) != "null device") dev.off()
-pdf(NULL)
 ```
     
 ```{r global, include = FALSE}
@@ -41,10 +37,12 @@ df_interventions <- tbinenglanddataclean::tb_interventions_timeline %>%
 
 ```{r}
 renderPlotly({
+  if (names(dev.cur()) != "null device") dev.off()
+  pdf(NULL)
   plot <- tbinenglanddataclean::plot_historic_tb_ew(zoom_date_start = NULL) 
   plot <- plotly_build(plot)
   plot$elementId <- NULL
-
+  
   plot
 })
 ```
@@ -66,11 +64,13 @@ DT::renderDataTable({
 
 ```{r}
 renderPlotly({
+
   plot <- tbinenglanddataclean::plot_historic_prop_pul_tb() +
   labs(caption = "Source: Public Health England")
   plot <- plotly_build(plot)
   plot$elementId <- NULL
   
   plot
+  
 })
 ```
