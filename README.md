@@ -17,7 +17,7 @@ In order to avoid machine specific issues these dashboards were developed using 
 docker run -d -p 8787:8787 --name TB_in_England_Wales -e PASSWORD=TB_England_Wales seabbs/TB_in_England_Wales
 ```
 
-The rstudio client can be found on port `:8787` at `localhost`. The default username:password is rstudio:TB\_in\_England\_Wales, set the user with `-e USER=username`, and the password with `- e PASSWORD=newpasswordhere`. The default is to save the analysis files into the user directory. The shiny server can be found on port `:3838` again at `localhost`. For more instructions on using docker see the [tidyverse](https://hub.docker.com/r/rocker/tidyverse/) docker image.
+The rstudio client can be found on port `:8787` at `localhost`. The default username:password is rstudio:TB\_in\_England\_Wales, set the user with `-e USER=username`, and the password with `- e PASSWORD=newpasswordhere`. The default is to save the analysis files into the user directory. For more instructions on using docker see the [tidyverse](https://hub.docker.com/r/rocker/tidyverse/) docker image.
 
 ### Manual install
 
